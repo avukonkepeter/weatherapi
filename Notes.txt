@@ -1,0 +1,20 @@
+-- Notes on Task
+
+- Yahoo! API is deprecated
+- Straight rendering using templates, django-render and view. This pattern is becoming obsolete
+- Finding API's with forecasting/historic data is a pain
+- Period ??? Period of what ? Duration ... Days ... hourly ... forecast ... historical
+
+-- Implementation Walkthrough
+
+- StartProject
+- Setup (settings, environment)
+- Base models, libraries, files
+- Template boilerplate, API stubs, refine models, migrations, admin, initial forms
+- API Auth & Communication
+    - Fuzzy Logic (for city)
+    - Data validation
+- Retrieve Results, Clean, Aggregate Results and display
+- Save History
+- Render BarChart
+- 'Display history' view

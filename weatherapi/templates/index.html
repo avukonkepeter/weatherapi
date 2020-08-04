@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+`
+{% block content %}
+    <form action="/api/weatherview/">
+        {% csrf_token %}
+{#        {{ form }}#}
+        <div class="form-group">
+            {{ form.non_field_errors }}
+        </div>
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.errors }}
+                {{ field.label_tag }}<br />
+                {{ field }}
+                <small class="form-text text-muted">{{ field.help_text|safe }}</small>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary mb-2">Submit</button>
+    </form>
+{% endblock %}
