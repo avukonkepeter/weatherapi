@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'weatherapi'
 ]
 
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'weatherapi.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'weatherapi.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'weatherapi2.sqlite3'),
     }
 }
 
@@ -120,3 +121,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+DEFAULT_QUERY_DURATION_DAYS = 7

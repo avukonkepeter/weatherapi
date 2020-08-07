@@ -8,6 +8,7 @@ django = "==2.2.14"
 djangorestframework = "*"
 requests = "*"
 jsonfield = "*"
+yahoo-weather = "*"
 
 [dev-packages]
 ipython = "*"
