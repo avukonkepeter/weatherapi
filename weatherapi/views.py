@@ -213,9 +213,7 @@ class WeatherView(APIView, APIViewToViewsetMixin):
                 openweather_data = WeatherAPI.get_openweather_results(
                     weather_object=weather_api,
                     city_lat=data['city_info']['lat'],
-                    city_lon=data['city_info']['long'],
-                    start_date=start_date, end_date=end_date,
-                    num_days=date_diff, offset=date_diff_offset
+                    city_lon=data['city_info']['long']
                 )
                 if openweather_data:
                     # Process, having issues with openweather at the moment

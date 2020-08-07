@@ -21,33 +21,39 @@ $(document).ready((e) => {
                 // We got positive data back from the user, continue to display data
                 $("#" + form.id).trigger('reset');
 
-                let citiesMatch = data['cities_match'];
-                if (!citiesMatch){
-                    $("#fuzzyInfo").text(
-                        'We have shown information for "' + data['city'] + '". This is the closest match we could find to the city you entered'
-                    );
-                } else {
-                    $("#fuzzyInfo").text("");
+                let cityName = maxTemperature = maxHumidity = minTemperature = minHumidity = meanTemperature = meanHumidity = medianHumidity = medianTemperature = startDate = endDate = celcius = ''
+                let cityMatches = true;
+
+                if (!$.isEmptyObject(data) && typeof(data) === 'object'){
+                    let citiesMatch = data['cities_match'];
+                    if (!citiesMatch){
+                        $("#fuzzyInfo").text(
+                            'We have shown information for "' + data['city'] + '". This is the closest match we could find to the city you entered'
+                        );
+                    } else {
+                        $("#fuzzyInfo").text("");
+                    }
+
+                    // Temperature Values
+                    maxTemperature = Math.round(data['forecast']['max_temperature']);
+                    minTemperature = Math.round(data['forecast']['min_temperature']);
+                    meanTemperature = Math.round(data['forecast']['mean_temperature']);
+                    medianTemperature = Math.round(data['forecast']['median_temperature']);
+
+                    // Humidity Values
+                    maxHumidity = Math.round(data['forecast']['max_humidity']);
+                    minHumidity = Math.round(data['forecast']['min_humidity']);
+                    meanHumidity = Math.round(data['forecast']['mean_humidity']);
+                    medianHumidity = Math.round(data['forecast']['median_humidity']);
+
+                    // City Data
+                    cityMatches = data['cities_match'];
+                    cityName = data['city'];
+                    startDate = data['start_date'];
+                    endDate = data['end_date'];
+                    celcius = String.fromCharCode(8451);
                 }
 
-                // Temperature Values
-                let maxTemperature = Math.round(data['forecast']['max_temperature']);
-                let minTemperature = Math.round(data['forecast']['min_temperature']);
-                let meanTemperature = Math.round(data['forecast']['mean_temperature']);
-                let medianTemperature = Math.round(data['forecast']['median_temperature']);
-
-                // Humidity Values
-                let maxHumidity = Math.round(data['forecast']['max_humidity']);
-                let minHumidity = Math.round(data['forecast']['min_humidity']);
-                let meanHumidity = Math.round(data['forecast']['mean_humidity']);
-                let medianHumidity = Math.round(data['forecast']['median_humidity']);
-
-                // City Data
-                let cityMatches = data['cities_match'];
-                let cityName = data['city'];
-                let startDate = data['start_date'];
-                let endDate = data['end_date'];
-                let celcius = String.fromCharCode(8451);
 
                 $(".cityInfoSpan").text(cityName);
                 $(".cityDateSpan").text(
@@ -58,18 +64,17 @@ $(document).ready((e) => {
                 $("#minTemperatureCard").text(minTemperature + celcius);
                 $("#meanTemperatureCard").text(meanTemperature + celcius);
                 $("#medianTemperatureCard").text(medianTemperature + celcius);
-                if (data['forecast']['humidity_values'].length > 0){
-                    $("#maxHumidityCard").text(maxHumidity + "%");
-                    $("#minHumidityCard").text(minHumidity + "%");
-                    $("#meanHumidityCard").text(meanHumidity + "%");
-                    $("#medianHumidityCard").text(medianHumidity + "%");
-                }
+
+                $("#maxHumidityCard").text(maxHumidity + "%");
+                $("#minHumidityCard").text(minHumidity + "%");
+                $("#meanHumidityCard").text(meanHumidity + "%");
+                $("#medianHumidityCard").text(medianHumidity + "%");
 
                 $(".cityInfoDisplay, .temperatureDisplay, .humidityDisplay, .graphDisplay").toggle();
             },
             error: error => {
                 // Something wrong with the city, display to user
-                console.log(error)
+                console.log(error);
             }
         });
     });
