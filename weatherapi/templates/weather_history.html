@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block nav %}
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'landing-page' %}">Home</a>
+        </li>
+        <li class="nav-item  active">
+            <a class="nav-link" href="#">History</a>
+        </li>
+    </ul>
+{% endblock %}
+{% block content %}
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Request Date</th>
+            <th scope="col">Date Range</th>
+            <th scope="col">City Searched</th>
+            <th scope="col">City Returned</th>
+
+            <th scope="col">Max Temperature</th>
+            <th scope="col">Min Temperature</th>
+            <th scope="col">Mean Temperature</th>
+            <th scope="col">Median Temperature</th>
+
+            <th scope="col">Max Humidity</th>
+            <th scope="col">Min Humidity</th>
+            <th scope="col">Mean Humidity</th>
+            <th scope="col">Median Humidity</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for weather_history in histories %}
+                <tr>
+                    <td>{{ weather_history.date }}</td>
+                    <td>{{ weather_history.date_range }}</td>
+                    <td>{{ weather_history.user_city }}</td>
+                    <td>{{ weather_history.api_city }}</td>
+
+                    <td>{{ weather_history.computed_max_temperature|floatformat:2 }}</td>
+                    <td>{{ weather_history.computed_min_temperature|floatformat:2 }}</td>
+                    <td>{{ weather_history.computed_mean_temperature|floatformat:2 }}</td>
+                    <td>{{ weather_history.computed_median_temperature|floatformat:2 }}</td>
+
+                    <td>{{ weather_history.computed_max_humidity|floatformat:2 }}</td>
+                    <td>{{ weather_history.computed_min_humidity|floatformat:2 }}</td>
+                    <td>{{ weather_history.computed_mean_humidity|floatformat:2 }}</td>
+                    <td>{{ weather_history.computed_median_humidity|floatformat:2 }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

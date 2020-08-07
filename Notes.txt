@@ -12,8 +12,11 @@
 - Base models, libraries, files
 - Template boilerplate, API stubs, refine models, migrations, admin, initial forms
 - API Auth & Communication
-    - Fuzzy Logic (for city)
+    - Oauth
+        ** Use yahoo-weather library (stable: > 1.0)
+    - Fuzzy Logic (for city), Autocomplete
     - Data validation
+    - Multi API support
 - Retrieve Results, Clean, Aggregate Results and display
 - Save History
 - Render BarChart

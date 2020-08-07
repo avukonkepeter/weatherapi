@@ -1,20 +1,125 @@
 {% extends 'base.html' %}
-`
+
 {% block content %}
-    <form action="/api/weatherview/">
+    <form action="{% url 'weatherview' %}" method="POST" id="weatherViewForm">
         {% csrf_token %}
-{#        {{ form }}#}
         <div class="form-group">
-            {{ form.non_field_errors }}
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">{{ form.non_field_errors }}</div>
+            {% endif %}
         </div>
         {% for field in form %}
             <div class="form-group">
-                {{ field.errors }}
+                {% if field.errors %}<div class="alert alert-danger" role="alert">{{ field.errors }}</div>{% endif %}
                 {{ field.label_tag }}<br />
-                {{ field }}
+                {{ field }} {% if field.id_for_label == 'id_city' %}<small id="cityHelpInline" class="text-muted">City could not be found. Did you mean: <span><a id="cityHelpPlaceholder" href="#"></a></span></small>{% endif %}
                 <small class="form-text text-muted">{{ field.help_text|safe }}</small>
             </div>
         {% endfor %}
         <button type="submit" class="btn btn-primary mb-2">Submit</button>
     </form>
+    <div class="row">
+        <h4></h4>
+    </div>
+    <div class="row cityInfoDisplay">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5>City Information - <span class="cityInfoSpan text-muted"></span></h5>
+                    <h6 class="card-subtitle">Weather forecast information for <span class="cityDateSpan text-muted"></span></h6>
+                    <br />
+                    <span id="fuzzyInfo" class="small"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row temperatureDisplay">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Max Temperature
+{#                        <span class="cityInfoSpan"></span>#}
+                    </h6>
+                    <p class="card-text" id="maxTemperatureCard"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Min Temperature
+{#                        <span class="cityInfoSpan"></span>#}
+                    </h6>
+                    <p class="card-text" id="minTemperatureCard"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Mean Temperature
+{#                        <span class="cityInfoSpan"></span>#}
+                    </h6>
+                    <p class="card-text" id="meanTemperatureCard"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Median Temperature
+{#                        <span class="cityInfoSpan"></span>#}
+                    </h6>
+                    <p class="card-text" id="medianTemperatureCard"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row humidityDisplay">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h6>Max Humidity
+{#                        <span class="cityInfoSpan"></span>#}
+                    </h6>
+                    <p class="card-text" id="maxHumidityCard"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h6>Min Humidity
+{#                        <span class="cityInfoSpan"></span>#}
+                    </h6>
+                    <p class="card-text" id="minHumidityCard"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h6>Mean Humidity
+{#                        <span class="cityInfoSpan"></span>#}
+                    </h6>
+                    <p class="card-text" id="meanHumidityCard"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h6>Median Humidity
+{#                        <span class="cityInfoSpan"></span>#}
+                    </h6>
+                    <p class="card-text" id="medianHumidityCard"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row graphDisplay">
+    </div>
 {% endblock %}
