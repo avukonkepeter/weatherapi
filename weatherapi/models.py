@@ -21,11 +21,15 @@ class WeatherAPI(models.Model):
     slug = models.SlugField(auto_created=False, blank=True, null=True)
     # Is user accessible API, from homepage ?
     userapi = models.BooleanField(default=False, blank=False, null=False)
+    supports_historical_data = models.BooleanField(default=False, blank=False, null=False)
     requires_oauth = models.BooleanField(default=False, blank=False, null=False)
     # Most Oauth API implementations will use id and secret convention
     application_id = models.CharField(blank=True, null=True, max_length=256)
     client_id_key = models.CharField(blank=True, null=True, max_length=256)
     client_secret = models.CharField(blank=True, null=True,  max_length=256)
+
+    class Meta:
+        ordering = ('slug', )
 
     @staticmethod
     def get_api_data(url, query):
@@ -159,6 +163,7 @@ class WeatherAPI(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.url}"
+
 
 
 class WeatherAPIRequestRecord(models.Model):

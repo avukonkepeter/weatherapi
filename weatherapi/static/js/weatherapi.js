@@ -1,11 +1,12 @@
 $(window).on('load', (e) => {
    $("#cityHelpInline").toggle();
-   $(".cityInfoDisplay, .temperatureDisplay, .humidityDisplay, .graphDisplay").toggle();
+   $(".cityInfoDisplay, .temperatureDisplay, .humidityDisplay, .graphDisplay, .alert-danger").toggle();
 });
 
 $(document).ready((e) => {
     $('#weatherViewForm').on('submit', (e) =>{$("#cityHelpInline").hide();
-   $(".cityInfoDisplay, .temperatureDisplay, .humidityDisplay, .graphDisplay").hide();
+   $(".cityInfoDisplay, .temperatureDisplay, .humidityDisplay, .graphDisplay, .alert-danger").hide();
+   $("#error-div .form-errors").text("");
         e.preventDefault();
         let form = e.currentTarget;
         let formData = new FormData(form);
@@ -18,10 +19,18 @@ $(document).ready((e) => {
             contentType: false,
             type: 'POST',
             success: (data) => {
-                // We got positive data back from the user, continue to display data
+                // We got positive data back from the apis, continue to display data
                 $("#" + form.id).trigger('reset');
 
-                let cityName = maxTemperature = maxHumidity = minTemperature = minHumidity = meanTemperature = meanHumidity = medianHumidity = medianTemperature = startDate = endDate = celcius = ''
+                if (data.has_error !== undefined && data["has_error"]){
+                    $('#error-div .form-errors').text(
+                        data.errors.join('\n\n')
+                    );
+                    $('.alert-danger').toggle();
+                    return;
+                }
+
+                let cityName = maxTemperature = maxHumidity = minTemperature = minHumidity = meanTemperature = meanHumidity = medianHumidity = medianTemperature = startDate = endDate = celcius = '';
                 let cityMatches = true;
 
                 if (!$.isEmptyObject(data) && typeof(data) === 'object'){

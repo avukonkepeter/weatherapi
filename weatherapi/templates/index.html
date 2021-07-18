@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <p class='lead'>Please note the API doesn't currently support fuzzy logic, please enter your desired search parameter accurately</p>
+    <p class='lead fa-italic'>
+      API currently supports lookup by Latitude/Longitude (decimal degree), City Name, US Zip Code, UK Postal Code, Canada Postal Code, Metar Code, IATA (Airport code), Auto IP Lookup (User IP), Custom IP Lookup (IPv4 & IPv6, user provided IP)
+    </p>
+
     <form action="{% url 'weatherview' %}" method="POST" id="weatherViewForm">
         {% csrf_token %}
-        <div class="form-group">
-            {% if form.non_field_errors %}
-                <div class="alert alert-danger" role="alert">{{ form.non_field_errors }}</div>
-            {% endif %}
+
+        <div id='error-div' class="form-group alert alert-danger">
+          <span class="form-errors"></span>
         </div>
+
         {% for field in form %}
             <div class="form-group">
                 {% if field.errors %}<div class="alert alert-danger" role="alert">{{ field.errors }}</div>{% endif %}

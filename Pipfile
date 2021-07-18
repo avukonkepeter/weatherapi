@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "==2.2.14"
+django = "*"
 djangorestframework = "*"
 requests = "*"
 jsonfield = "*"
@@ -15,4 +15,4 @@ ipython = "*"
 ipdb = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.9"

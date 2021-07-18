@@ -1,0 +1,122 @@
+[
+{
+    "model": "weatherapi.weatherapi",
+    "fields": {
+        "name": "AccuWeather GeoPosition Search",
+        "url": "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search",
+        "description": "Geoposition search for city information based on lat/long",
+        "slug": "accuweather-geoposition",
+        "userapi": false,
+        "supports_historical_data": false,
+        "requires_oauth": false,
+        "application_id": null,
+        "client_id_key": "b8Ga5tfTZAwvE4hsffMgPO0Ry8y1SlGH",
+        "client_secret": null
+    }
+},
+{
+    "model": "weatherapi.weatherapi",
+    "fields": {
+        "name": "weatherapi.com",
+        "url": "http://api.weatherapi.com/v1",
+        "description": "WeatherAPI. com multi-functional API. Allows forecast and historical data",
+        "slug": "weatherapi",
+        "userapi": true,
+        "supports_historical_data": false,
+        "requires_oauth": true,
+        "application_id": null,
+        "client_id_key": "5ad4ec1b428d4d709b8111848211507",
+        "client_secret": null
+    }
+},
+{
+    "model": "weatherapi.weatherapi",
+    "fields": {
+        "name": "AccuWeather Autocomplete Search",
+        "url": "http://dataservice.accuweather.com/locations/v1/cities/autocomplete",
+        "description": "API endpoint for autocomplete searching to make sure city names are validated against some online service",
+        "slug": "autocomplete",
+        "userapi": false,
+        "supports_historical_data": false,
+        "requires_oauth": false,
+        "application_id": null,
+        "client_id_key": "b8Ga5tfTZAwvE4hsffMgPO0Ry8y1SlGH",
+        "client_secret": null
+    }
+},
+{
+    "model": "weatherapi.weatherapi",
+    "fields": {
+        "name": "Weatherstack API",
+        "url": "http://api.weatherstack.com/",
+        "description": "Weatherstack API's to supplement data as received from Yahoo",
+        "slug": "weatherstack",
+        "userapi": false,
+        "supports_historical_data": false,
+        "requires_oauth": false,
+        "application_id": null,
+        "client_id_key": "abb67d6d21c386c8a52558765d761045",
+        "client_secret": null
+    }
+},
+{
+    "model": "weatherapi.weatherapi",
+    "fields": {
+        "name": "Open Weather",
+        "url": "https://api.openweathermap.org/data/2.5/onecall",
+        "description": "",
+        "slug": "openweather",
+        "userapi": true,
+        "supports_historical_data": false,
+        "requires_oauth": false,
+        "application_id": null,
+        "client_id_key": "a7d9eb904f03dcad05c8f5d81b71086e",
+        "client_secret": null
+    }
+},
+{
+    "model": "weatherapi.weatherapi",
+    "fields": {
+        "name": "Yahoo! Weather API",
+        "url": "https://weather-ydn-yql.media.yahoo.com/forecastrss?format=json",
+        "description": "",
+        "slug": "yahoo-weather",
+        "userapi": false,
+        "supports_historical_data": false,
+        "requires_oauth": true,
+        "application_id": "kDosM2VG",
+        "client_id_key": "dj0yJmk9TnNZSWxwQWR1ZHByJmQ9YWk9a0Rvc00yVkcmcGo9MCZzPWNvbnN1bWVyc2VjcmV0JnN2PTAmeD03Yg--",
+        "client_secret": "40961fc851fd1b3ae167c25cb6e5450802f12c6e"
+    }
+},
+{
+    "model": "weatherapi.weatherapi",
+    "fields": {
+        "name": "AccuWeather 5 Day Forecast",
+        "url": "http://dataservice.accuweather.com/forecasts/v1/daily/5day/",
+        "description": "Get 5 day forecast using AccuWeather",
+        "slug": "accuweather-forecast",
+        "userapi": true,
+        "supports_historical_data": false,
+        "requires_oauth": false,
+        "application_id": null,
+        "client_id_key": "b8Ga5tfTZAwvE4hsffMgPO0Ry8y1SlGH",
+        "client_secret": null
+    }
+},
+{
+    "model": "weatherapi.weatherapi",
+    "fields": {
+        "name": "AccuWeather Cities Search",
+        "url": "http://dataservice.accuweather.com/locations/v1/cities/search",
+        "description": "Get Weather Data for this particular city in json format",
+        "slug": "accuweather-cities",
+        "userapi": false,
+        "supports_historical_data": false,
+        "requires_oauth": false,
+        "application_id": null,
+        "client_id_key": "b8Ga5tfTZAwvE4hsffMgPO0Ry8y1SlGH",
+        "client_secret": null
+    }
+}
+]
